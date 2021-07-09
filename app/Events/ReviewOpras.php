@@ -1,0 +1,39 @@
+<?php
+
+namespace App\Events;
+
+use App\Models\Opras;
+use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+
+class ReviewOpras implements ShouldBroadcast
+{
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $supervisor_id;
+    /**
+     * Create a new event instance.
+     *
+     * @return void
+     */
+    public function __construct($supervisor_id)
+    {
+        $this->supervisor_id = $supervisor_id;
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return \Illuminate\Broadcasting\Channel|array
+     */
+    public function broadcastOn()
+    {
+        return new PrivateChannel('review-opras.'.$this->supervisor_id);
+    }
+}

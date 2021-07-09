@@ -1,0 +1,43 @@
+@font-face {
+    font-family: fontA;
+    src: url(../fonts/Ropa_Sans/RopaSans-Regular.ttf);
+  }
+  body{
+    font-family: fontA, sans-serif !important;
+  }
+/* Text Colors */
+.color_a{
+    color: #0066cc;
+}
+.panel{
+    border-radius: 0;
+}
+.ibox-content-title{
+    padding-bottom: 5px;
+    /* background-color: #f3f3f3; */
+    text-align: right;
+}
+.ibox-content-body{
+    padding-top: 15px;
+}
+.ibox-btn{
+    text-align: right;
+}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success, .btn-success:active:focus, .btn-success:active:hover, .btn-success.active:hover, .btn-success.active:focus {
+    background-color: #17987e;
+    border-color: #17987e;
+    color: #fff;
+}
+label.btn-success {
+    background-color: #fff;
+    border-color: #e6e6e6;
+    color: #0066cc;
+}
+label.btn-success {
+    background-color: #fff;
+    border-color: #e6e6e6;
+    color: #0066cc;
+}
+.btn-success:hover{
+    background-color: #0056ac;
+}
