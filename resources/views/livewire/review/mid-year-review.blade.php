@@ -40,7 +40,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($opras->midYearReview as $key => $midYearReview)
+                            @foreach ($opras->midYearReviews as $key => $midYearReview)
                                 <tr class="gradeX">
                                     <td>{{ $key+1 }}</td>
                                     <td>{!! str_limit($midYearReview->objective, 10, '...') !!}</td>

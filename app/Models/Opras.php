@@ -116,42 +116,42 @@ class Opras extends Model
 
     public function reviewSectionTwo()
     {
-        return $this->review->where('section', 'performance_agreement')->last();
+        return $this->reviews->where('section', 'performance_agreement')->last();
     }
 
     public function reviewSectionThree()
     {
-        return $this->review->where('section', 'mid_year_review')->last();
+        return $this->reviews->where('section', 'mid_year_review')->last();
     }
 
     public function reviewSectionFour()
     {
-        return $this->review->where('section', 'revised_objective')->last();
+        return $this->reviews->where('section', 'revised_objective')->last();
     }
 
     public function reviewSectionFive()
     {
-        return $this->review->where('section', 'annual_performance_review')->last();
+        return $this->reviews->where('section', 'annual_performance_review')->last();
     }
 
     public function reviewSectionSix()
     {
-        return $this->review->where('section', 'attribute_good_performance')->last();
+        return $this->reviews->where('section', 'attribute_good_performance')->last();
     }
 
     public function reviewSectionSeven()
     {
-        return $this->review->where('section', 'overall_performance')->last();
+        return $this->reviews->where('section', 'overall_performance')->last();
     }
 
     public function reviewSectionEight()
     {
-        return $this->review->where('section', 'reward_measure_sanction')->last();
+        return $this->reviews->where('section', 'reward_measure_sanction')->last();
     }
 
     public function reviewSectionNine()
     {
-        return $this->review->where('section', 'attachment')->last();
+        return $this->reviews->where('section', 'attachment')->last();
     }
 
     // return true if section two status is complete or sent to supervisor

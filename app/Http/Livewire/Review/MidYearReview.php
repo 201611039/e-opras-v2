@@ -47,7 +47,7 @@ class MidYearReview extends Component
 
     public function accept()
     {
-        $this->opras->midYearReview()->update(['comments' => null]); // remove all comments
+        $this->opras->midYearReviews()->update(['comments' => null]); // remove all comments
         $this->opras->reviewSectionThree()->delete(); // delete reviewing session
 
         $this->opras->sectionThree()->update([ // mark section two as complete
@@ -80,7 +80,7 @@ class MidYearReview extends Component
 
     public function checkMidYearReview()
     {
-        foreach ($this->opras->midYearReview as $p) {
+        foreach ($this->opras->midYearReviews as $p) {
             if ($p->comments) {
                 return true;
             }

@@ -48,7 +48,7 @@ class PerformanceAgreement extends Component
 
     public function accept()
     {
-        $this->opras->performanceAgreement()->update(['comments' => null]); // remove all comments
+        $this->opras->performanceAgreements()->update(['comments' => null]); // remove all comments
         $this->opras->reviewSectionTwo()->delete(); // delete reviewing session
 
         $this->opras->sectionTwo()->update([ // mark section two as complete
@@ -81,7 +81,7 @@ class PerformanceAgreement extends Component
 
     public function checkPerformanceAgreement()
     {
-        foreach ($this->opras->performanceAgreement as $p) {
+        foreach ($this->opras->performanceAgreements as $p) {
             if ($p->comments) {
                 return true;
             }

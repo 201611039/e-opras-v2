@@ -30,7 +30,7 @@ class AnnualReview extends Component
     {
         $this->checkSection();
 
-        foreach ($this->opras->annualReview as $annualReview) {
+        foreach ($this->opras->annualReviews as $annualReview) {
             if (!($annualReview->allMarkFlag())) {
                 $this->confirmAnnualReview = false;
                 break;
@@ -118,14 +118,14 @@ class AnnualReview extends Component
 
     public function checkAnnualReview()
     {
-        foreach ($this->opras->annualReview as $annualReview) {
+        foreach ($this->opras->annualReviews as $annualReview) {
             if (!$annualReview->ratedMark->supervisor) {
                 return false;
             }
         }
 
         if ($this->confirmAnnualReview) { // for agreed mark supervision
-            foreach ($this->opras->annualReview as $annualReview) {
+            foreach ($this->opras->annualReviews as $annualReview) {
                 if ($annualReview->comments) {
                     return true;
                 }

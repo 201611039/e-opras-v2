@@ -41,7 +41,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach ($opras->performanceAgreement as $key => $performance)
+                            @foreach ($opras->performanceAgreements as $key => $performance)
                                 <tr class="gradeX">
                                     <td>{{ $key+1 }}</td>
                                     <td>{!! str_limit($performance->objective, 10, '...') !!}</td>
