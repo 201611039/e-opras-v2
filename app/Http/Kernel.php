@@ -2,9 +2,7 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\CheckReview;
-use App\Http\Middleware\CheckSectionThree;
-use App\Http\Middleware\CheckSectionTwo;
+use App\Http\Middleware\CheckSection;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -65,7 +63,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'section-two' => CheckSectionTwo::class,
-        'section-three' => CheckSectionThree::class,
+        'section' => CheckSection::class,
     ];
 }

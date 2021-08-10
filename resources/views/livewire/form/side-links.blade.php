@@ -39,7 +39,7 @@
             SECTION 3
         </a>
 
-        <a data-toggle="tooltip" title="Revised Objectives" data-placement="top" href="{{ $opras->sectionThree()->status??false?/* route('form.section.4') */ '#':'#' }}" class="list-group-item {{ $segment == 'revised-objectives'? 'active':'' }} {{ ($opras->sectionThree()->status??false)?'':'disabled' }}">
+        <a data-toggle="tooltip" title="Revised Objectives" data-placement="top" href="{{ $opras->sectionThree()->status??false?route('revised-objectives.index'):'#' }}" class="list-group-item {{ $segment == 'revised-objectives'? 'active':'' }} {{ ($opras->sectionThree()->status??false)?'':'disabled' }}">
             @if ($opras->sectionFour()->status??false)
                 <span class="pull-right text-info">
                     <i class="fa fa-check-square-o"></i>
@@ -52,7 +52,7 @@
             SECTION  4
         </a>
 
-        <a data-toggle="tooltip" title="Annual Performance Review" data-placement="top" href="{{ $opras->sectionFour()->status??false?/* route('form.section.5') */ '#':'#'  }}" class="list-group-item {{ $segment == 'annual-perfomance-review'? 'active':'' }}  {{ $opras->sectionFour()->status??false?'':'disabled' }}">
+        <a data-toggle="tooltip" title="Annual Performance Review" data-placement="top" href="{{ $opras->sectionFour()->status??false?route('annual-review.index'):'#'  }}" class="list-group-item {{ $segment == 'annual-review'? 'active':'' }}  {{ $opras->sectionFour()->status??false?'':'disabled' }}">
             @if ($opras->sectionFive()->status??false)
                 <span class="pull-right text-info">
                     <i class="fa fa-check-square-o"></i>

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckSectionThree
+class CheckSection
 {
     /**
      * Handle an incoming request.
@@ -14,10 +14,11 @@ class CheckSectionThree
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $section)
     {
         if (auth()->check()) {
-            if ($request->user()->myOpras()->checkSectionThree()) {
+            $section = 'checkSection'. title_case($section);
+            if ($request->user()->myOpras()->$section()) {
                 return $next($request);
             } else {
                 toastr('You are not allowed to perform this action', 'error');

@@ -17,7 +17,7 @@ class CreateRatedMarksTable extends Migration
             $table->id();
             $table->smallInteger('appraisee')->nullable();
             $table->smallInteger('supervisor')->nullable();
-            $table->float('agreed')->nullable();
+            $table->smallInteger('agreed')->nullable();
             $table->timestamps();
         });
     }

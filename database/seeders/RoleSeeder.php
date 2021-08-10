@@ -47,9 +47,9 @@ class RoleSeeder extends Seeder
                 'permissions' => [
                     ['personal-information', 'action' => ['update', 'create', 'complete']],
                     ['performance-agreement', 'action' => ['update', 'create', 'delete', 'foward']],
-                    ['mid-year-review', 'action' => ['update', 'create', 'delete', 'foward']],
+                    ['mid-year-review', 'action' => ['update', 'foward']],
                     ['revised-objective', 'action' => ['update', 'create', 'delete', 'foward']],
-                    ['annual-review', 'action' => ['update', 'create', 'delete', 'foward']],
+                    ['annual-review', 'action' => ['update', 'foward']],
                     ['opras', 'action' => ['create', 'delete']],
                     ['attribute-good-performance', 'action' => ['update', 'create', 'delete', 'foward']],
                     ['overall-perfomance', 'action' => ['update', 'create', 'delete', 'foward']],

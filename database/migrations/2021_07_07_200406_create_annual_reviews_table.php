@@ -17,7 +17,7 @@ class CreateAnnualReviewsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('opras_id');
             $table->foreign('opras_id')->references('id')->on('opras')->onDelete('cascade');
-            
+
             $table->unsignedBigInteger('mid_year_review_id')->nullable();
             $table->foreign('mid_year_review_id')->references('id')->on('mid_year_reviews')->onDelete('cascade');
 
@@ -26,6 +26,7 @@ class CreateAnnualReviewsTable extends Migration
 
             $table->longText('objective');
             $table->longText('progress_made')->nullable();
+            $table->text('comment')->nullable();
 
             $table->unsignedBigInteger('rated_mark_id')->nullable();
             $table->foreign('rated_mark_id')->references('id')->on('rated_marks')->onDelete('cascade');

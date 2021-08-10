@@ -53,7 +53,7 @@ class PerformanceAgreementController extends Controller
             'resource'  => $request->resource,
         ]);
 
-        $opras->midYearReview()->firstOrCreate([
+        $opras->midYearReviews()->firstOrCreate([
             'objective' => $performanceAgreement->objective,
             'performance_agreement_id' => $performanceAgreement->id
         ]);
@@ -139,7 +139,7 @@ class PerformanceAgreementController extends Controller
 
         $opras = request()->user()->myOpras();
 
-        $opras->review()->firstOrCreate([
+        $opras->reviews()->firstOrCreate([
             'section' => 'performance_agreement'
         ]);
 

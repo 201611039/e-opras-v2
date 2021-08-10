@@ -39,7 +39,7 @@ class Opras extends Model
         return $this->hasMany(Section::class);
     }
 
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
@@ -49,14 +49,24 @@ class Opras extends Model
         return $this->hasOne(PersonalInformation::class);
     }
 
-    public function performanceAgreement()
+    public function performanceAgreements()
     {
         return $this->hasMany(PerformanceAgreement::class);
     }
 
-    public function midYearReview()
+    public function midYearReviews()
     {
         return $this->hasMany(MidYearReview::class);
+    }
+
+    public function revisedObjectives()
+    {
+        return $this->hasMany(RevisedObjective::class);
+    }
+
+    public function annualReviews()
+    {
+        return $this->hasMany(AnnualReview::class);
     }
 
     public function sectionOne()
@@ -144,7 +154,7 @@ class Opras extends Model
         return $this->review->where('section', 'attachment')->last();
     }
 
-    // return true if section two status is complete or u
+    // return true if section two status is complete or sent to supervisor
     public function checkSectionTwo()
     {
         return (!$this->sectionTwo()->status) && (!$this->reviewSectionTwo()) ||
@@ -152,11 +162,27 @@ class Opras extends Model
         ;
     }
 
-    // return true if section two status is complete or u
+    // return true if section two status is complete or sent to supervisor
     public function checkSectionThree()
     {
         return (!$this->sectionThree()->status) && (!$this->reviewSectionThree()) ||
         ($this->sectionThree()->status) && ($this->reviewSectionThree())
+        ;
+    }
+
+    // return true if section four status is complete or sent to supervisor
+    public function checkSectionFour()
+    {
+        return (!$this->sectionFour()->status) && (!$this->reviewSectionFour()) ||
+        ($this->sectionFour()->status) && ($this->reviewSectionFour())
+        ;
+    }
+
+    // return true if section five status is complete or sent to supervisor
+    public function checkSectionFive()
+    {
+        return (!$this->sectionFive()->status) && (!$this->reviewSectionFive()) ||
+        ($this->sectionFive()->status) && ($this->reviewSectionFive())
         ;
     }
 

@@ -2,6 +2,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5><span class="text-danger">{{ $opras->user->full_name }}</span> Mid-Year Review</h5>
+                </div>
                 <div class="ibox-content">
                     @if ($message)
                         <div class="alert alert-{{ $message[1] }} alert-dismissable">
