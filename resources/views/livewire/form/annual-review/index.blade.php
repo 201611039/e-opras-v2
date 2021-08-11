@@ -96,12 +96,14 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label>Comments </label>
-                                                        <div class="well" style="word-wrap: break-word;">
-                                                            {!! $annualReview->comments !!}
+                                                    @if ($annualReview->comments)
+                                                        <div class="form-group">
+                                                            <label>Comments </label>
+                                                            <div class="well" style="word-wrap: break-word;">
+                                                                {!! $annualReview->comments !!}
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    @endif
 
                                                 </div>
                                                 <div class="modal-footer">

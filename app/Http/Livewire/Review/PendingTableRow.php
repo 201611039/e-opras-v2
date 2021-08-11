@@ -12,7 +12,7 @@ class PendingTableRow extends Component
 
     public function mount()
     {
-        $this->route = str_slug($this->row->opras->review()->first()->section);
+        $this->route = str_slug($this->row->opras->reviews()->first()->section);
     }
 
     public function render()

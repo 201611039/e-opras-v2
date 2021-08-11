@@ -46,7 +46,7 @@ class PerformanceAgreementController extends Controller
             $validator->validate();
         }
 
-        $performanceAgreement = $opras->performanceAgreement()->firstOrCreate([
+        $performanceAgreement = $opras->performanceAgreements()->firstOrCreate([
             'objective' => $request->objective,
             'target'    => $request->target,
             'criteria'  => $request->criteria,
@@ -139,15 +139,20 @@ class PerformanceAgreementController extends Controller
 
         $opras = request()->user()->myOpras();
 
-        $opras->reviews()->firstOrCreate([
-            'section' => 'performance_agreement'
-        ]);
+        if ($opras->performanceAgreements->count()) {
+            $opras->reviews()->firstOrCreate([
+                'section' => 'performance_agreement'
+            ]);
 
-        $opras->performanceAgreement()->update(['comments' => null]);
+            $opras->performanceAgreements()->update(['comments' => null]);
 
-        broadcast(new ReviewOpras($opras->personalInformation->supervisor_id))->toOthers();
+            broadcast(new ReviewOpras($opras->personalInformation->supervisor_id))->toOthers();
 
-        toastr('Fowarded to supervisor successfully');
+            toastr('Fowarded to supervisor successfully');
+        } else {
+            toastr('Add atleast one objective in order to foward to supervisor', 'error', 'Error fowarding');
+        }
+
         return back();
     }
 }

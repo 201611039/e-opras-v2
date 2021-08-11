@@ -50,7 +50,7 @@ class MidYearReviewController extends Controller
             'factor_affecting_performance' => $request->factor_affecting_performance,
             ]);
 
-        $midYearReview->annualReviews()->updateOrCreate(
+        $midYearReview->annualReview()->updateOrCreate(
             [
                 'mid_year_review_id' => $midYearReview->id
             ],
@@ -71,7 +71,7 @@ class MidYearReviewController extends Controller
 
         $opras = request()->user()->myOpras();
 
-        foreach ($opras->midYearReview as $key => $midYearReview) {
+        foreach ($opras->midYearReviews as $key => $midYearReview) {
             if (!$midYearReview->progress_made) {
                 toastr('Filling mid-year review for all objectives is required', 'error');
                 return redirect()->route('mid-year-review.index');

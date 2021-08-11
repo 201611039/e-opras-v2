@@ -185,5 +185,12 @@ class Opras extends Model
         ($this->sectionFive()->status) && ($this->reviewSectionFive())
         ;
     }
+    // return true if section six status is complete or sent to supervisor
+    public function checkSectionSix()
+    {
+        return (!$this->sectionSix()->status) && (!$this->reviewSectionSix()) ||
+        ($this->sectionSix()->status) && ($this->reviewSectionSix())
+        ;
+    }
 
 }

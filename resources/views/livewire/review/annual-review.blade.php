@@ -162,8 +162,10 @@
                         </div>
 
                         <div align="right">
-                            <button class="btn btn-primary" onclick="accept()" title="Accept" data-toggle="tooltip" data-placement="top"><i class="fa fa-check"></i></button>
-                            <button class="btn btn-danger" onclick="decline()" title="Decline" data-toggle="tooltip" data-placement="top"><i class="fa fa-times"></i></button>
+                            <button class="btn btn-primary" @if($confirmAnnualReview) onclick="accept()" @else onclick="complete()" @endif title="{{ $confirmAnnualReview?'Accept':'Complete' }}" data-toggle="tooltip" data-placement="top"><i class="fa fa-check"></i></button>
+                            @if ($confirmAnnualReview)
+                                <button class="btn btn-danger" onclick="decline()" title="Decline" data-toggle="tooltip" data-placement="top"><i class="fa fa-times"></i></button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -190,6 +192,12 @@
     function accept() {
         if (confirm('Are you sure?')) {
             Livewire.emit('accept');
+        }
+    }
+
+    function complete() {
+        if (confirm('Are you sure?')) {
+            Livewire.emit('complete');
         }
     }
 </script>

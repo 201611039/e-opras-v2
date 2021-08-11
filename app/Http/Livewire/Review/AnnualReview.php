@@ -20,7 +20,7 @@ class AnnualReview extends Component
     public $error;
     public $showModal = false;
 
-    protected $listeners = ['accept', 'decline'];
+    protected $listeners = ['accept', 'decline', 'complete'];
 
     protected $casts = [
         'supervisorMark' => 'integer'
@@ -88,6 +88,25 @@ class AnnualReview extends Component
     }
 
     public function accept()
+    {
+        $this->opras->annualReviews()->update(['comments' => null]); // remove all comments
+        $this->opras->reviewSectionFive()->delete(); // delete reviewing session
+
+        $this->opras->sectionFive()->update([ // mark section five as complete
+            'status' => 1
+        ]);
+
+        $this->opras->sections()->firstOrCreate([ // create new section which is atttribute of good performance
+            'section' => 'attribute_good_performance'
+        ]);
+
+        broadcast(new OprasReviewed($this->opras))->toOthers();
+
+        toastr('Accepted successfully');
+        return redirect()->route('review.index');
+    }
+
+    public function complete()
     {
         if ($this->checkAnnualReview()) {
             $this->opras->reviewSectionFive()->delete(); // delete reviewing session

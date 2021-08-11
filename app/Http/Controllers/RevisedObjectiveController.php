@@ -142,7 +142,7 @@ class RevisedObjectiveController extends Controller
 
         $opras = request()->user()->myOpras();
 
-        $opras->review()->firstOrCreate([
+        $opras->reviews()->firstOrCreate([
             'section' => 'revised_objective'
         ]);
 

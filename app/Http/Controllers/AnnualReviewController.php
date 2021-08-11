@@ -62,22 +62,24 @@ class AnnualReviewController extends Controller
 
         $opras = request()->user()->myOpras();
 
-        foreach ($opras->annualReview as $key => $annualReview) {
+        foreach ($opras->annualReviews as $annualReview) {
             if (!($annualReview->progress_made) && !($annualReview->ratedMark->appraisee??false)) {
                 toastr('Filling annual performance review for all objectives is required', 'error');
                 return redirect()->route('annual-review.index');
             }
         }
 
-        foreach ($opras->annualReviews as $annualReview) {
-            if ($annualReview->agreedMarkFlag()) {
-                if (!$annualReview->allMarkFlag()) {
-                    toastr('Filling agreed rated mark for all objectives is required', 'error');
+        if ($annualReview->agreedMarkFlag()) {
+            foreach ($opras->annualReviews as $annualReview) {
+                if ($annualReview->agreedMarkFlag()) {
+                    if (!$annualReview->allMarkFlag()) {
+                        toastr('Filling agreed rated mark for all objectives is required', 'error');
+                        return redirect()->route('annual-review.index');
+                    }
+                } else {
+                    toastr('Filling annual performance review for all objectives is required', 'error');
                     return redirect()->route('annual-review.index');
                 }
-            } else {
-                toastr('Filling annual performance review for all objectives is required', 'error');
-                return redirect()->route('annual-review.index');
             }
         }
 

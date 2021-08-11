@@ -11,6 +11,7 @@ use App\Http\Controllers\PerformanceAgreementController;
 use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RevisedObjectiveController;
 use App\Http\Livewire\Form\AnnualReview\Index as AnnualReviewIndex;
+use App\Http\Livewire\Form\AttributePerformance\Index as AttributePerformanceIndex;
 use App\Http\Livewire\Form\MidYearReview\Index as MidYearReviewIndex;
 use App\Http\Livewire\Form\PerformanceAgreement\Index as PerformanceAgreementIndex;
 use App\Http\Livewire\Form\PersonalInformation\Index;
@@ -82,6 +83,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function ()
         {
             Route::post('annual-review/foward', [AnnualReviewController::class, 'foward'])->name('annual-review.foward');
             Route::resource('annual-review', AnnualReviewController::class)->only([
+                'update', 'edit'
+            ]);
+        });
+
+        // Attribute of Good Performance
+        Route::get('attribute-performance', AttributePerformanceIndex::class)->name('attribute-performance.index');
+        Route::middleware('section:six')->group(function ()
+        {
+            Route::post('attribute-performance/foward', [AnnualReviewController::class, 'foward'])->name('attribute-performance.foward');
+            Route::resource('attribute-performance', AnnualReviewController::class)->only([
                 'update', 'edit'
             ]);
         });
