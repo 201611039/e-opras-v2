@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnnualReviewController;
+use App\Http\Controllers\AttributePerformanceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MidYearReviewController;
@@ -91,8 +92,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function ()
         Route::get('attribute-performance', AttributePerformanceIndex::class)->name('attribute-performance.index');
         Route::middleware('section:six')->group(function ()
         {
-            Route::post('attribute-performance/foward', [AnnualReviewController::class, 'foward'])->name('attribute-performance.foward');
-            Route::resource('attribute-performance', AnnualReviewController::class)->only([
+            Route::post('attribute-performance/foward', [AttributePerformanceController::class, 'foward'])->name('attribute-performance.foward');
+            Route::resource('attribute-performance', AttributePerformanceController::class)->only([
                 'update', 'edit'
             ]);
         });

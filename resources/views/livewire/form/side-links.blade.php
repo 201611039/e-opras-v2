@@ -65,7 +65,7 @@
             SECTION 5
         </a>
 
-        <a data-toggle="tooltip" title="Attribute of Good Performance" data-placement="top" href="{{ $opras->sectionFive()->status??false?/* route('form.section.6') */ '#':'#' }}" class="list-group-item {{ $segment == 'attribute-good-perfomance'? 'active':'' }} {{ $opras->sectionFive()->status??false?'':'disabled' }}">
+        <a data-toggle="tooltip" title="Attribute of Good Performance" data-placement="top" href="{{ $opras->sectionFive()->status??false?route('attribute-performance.index'):'#' }}" class="list-group-item {{ $segment == 'attribute-performance'? 'active':'' }} {{ $opras->sectionFive()->status??false?'':'disabled' }}">
             @if ($opras->sectionSix()->status??false)
                 <span class="pull-right text-info">
                     <i class="fa fa-check-square-o"></i>

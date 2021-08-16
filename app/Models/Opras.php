@@ -69,6 +69,11 @@ class Opras extends Model
         return $this->hasMany(AnnualReview::class);
     }
 
+    public function attributePerformance()
+    {
+        return $this->hasOne(attributePerformance::class);
+    }
+
     public function sectionOne()
     {
         return $this->sections->where('section', 'personal_information')->last();
