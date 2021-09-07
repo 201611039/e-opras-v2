@@ -1,39 +1,24 @@
 <?php
 
-namespace App\Http\Livewire\Form\AttributePerformance;
+namespace App\Http\Livewire\Form\Submission;
 
-use App\Models\AttributePerformance;
+use App\Models\AttributePerformance as ModelsAttributePerformance;
 use App\Models\Opras;
 use Livewire\Component;
-use Illuminate\Support\Facades\Gate;
 
-class Index extends Component
+class AttributePerformance extends Component
 {
     public Opras $opras;
-    public AttributePerformance $attributePerformance;
+    public ModelsAttributePerformance $attributePerformance;
     public $appraiseeInputDisabled = false;
     public $supervisorInputDisabled = false;
     public $underReview = false;
     public $complete = false;
 
-    public function getListeners()
-    {
-        return [
-            "echo-private:opras-reviwed.{$this->opras->id},OprasReviewed" => 'updateOpras',
-        ];
-    }
-
     public function mount()
     {
         $this->opras = request()->user()->myOpras();
-
-        // Create attribute performance instance
-        if(!isset($this->opras->attributePerformance)) {
-            $this->attributePerformance =  $this->opras->attributePerformance()->create();
-        }
-        else {
-            $this->attributePerformance = $this->opras->attributePerformance;
-        }
+        $this->attributePerformance = $this->opras->attributePerformance;
 
         // check if section is compelete to disable all inputs
         if ($this->opras->sectionSix()->status??false) {
@@ -47,7 +32,6 @@ class Index extends Component
             $this->appraiseeInputDisabled = true;
             $this->supervisorInputDisabled = true;
         }
-
     }
 
     public function checkAppraiseeInput()
@@ -63,15 +47,8 @@ class Index extends Component
         }
     }
 
-    public function updateOpras()
-    {
-        $this->opras->refresh();
-    }
-
     public function render()
     {
-        Gate::authorize('attribute-good-performance-view');
-
-        return view('livewire.form.attribute-performance.index');
+        return view('livewire.form.submission.attribute-performance');
     }
 }

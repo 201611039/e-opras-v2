@@ -63,7 +63,7 @@ class AnnualReviewController extends Controller
         $opras = request()->user()->myOpras();
 
         foreach ($opras->annualReviews as $annualReview) {
-            if (!($annualReview->progress_made) && !($annualReview->ratedMark->appraisee??false)) {
+            if (!($annualReview->progress_made) || !($annualReview->ratedMark->appraisee??false)) {
                 toastr('Filling annual performance review for all objectives is required', 'error');
                 return redirect()->route('annual-review.index');
             }

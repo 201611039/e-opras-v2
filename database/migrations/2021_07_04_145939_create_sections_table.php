@@ -24,8 +24,7 @@ class CreateSectionsTable extends Migration
                 'annual_performance_review',
                 'attribute_good_performance',
                 'overall_performance',
-                'reward_measure_sanction',
-                'attachment',
+                'reward_measure_sanction'
             ]);
             $table->boolean('status')->default(0)->comment('1 = complete, 0 = incomplete');
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Review;
 use App\Models\Opras;
 use Livewire\Component;
 use App\Events\OprasReviewed;
+use Illuminate\Support\Facades\Gate;
 use App\Models\RevisedObjective as ModelsRevisedObjective;
 
 class RevisedObjective extends Component
@@ -96,13 +97,18 @@ class RevisedObjective extends Component
     public function checkSection()
     {
         if($this->opras->sectionFour()->status) {
-            toastr('Section two is already completed', 'error', 'You are not allowed');
+            toastr('Revised Objective section is already completed', 'error', 'You are not allowed');
+            return redirect()->route('review.index');
+        } elseif (!$this->opras->reviewSectionFour()) {
+            toastr('Revised Objective section is not under review', 'error', 'You are not allowed');
             return redirect()->route('review.index');
         }
     }
 
     public function render()
     {
+        Gate::authorize('revised-objective-review');
+
         return view('livewire.review.revised-objective');
     }
 }

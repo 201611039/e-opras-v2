@@ -51,9 +51,8 @@ class RoleSeeder extends Seeder
                     ['revised-objective', 'action' => ['update', 'create', 'delete', 'foward']],
                     ['annual-review', 'action' => ['update', 'foward']],
                     ['opras', 'action' => ['create', 'delete']],
-                    ['attribute-good-performance', 'action' => ['update', 'create', 'delete', 'foward']],
-                    ['overall-perfomance', 'action' => ['update', 'create', 'delete', 'foward']],
-                    ['sanction-reward', 'action' => ['update', 'create', 'delete']],
+                    ['attribute-good-performance', 'action' => ['store', 'foward']],
+                    ['overall-perfomance', 'action' => ['update', 'foward']],
                     ['attachment', 'action' => ['update', 'create', 'delete']],
                 ]
             ]

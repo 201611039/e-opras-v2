@@ -49,7 +49,7 @@
                     <i class="fa fa-times"></i>
                 </span>
             @endif
-            SECTION  4
+            SECTION 4
         </a>
 
         <a data-toggle="tooltip" title="Annual Performance Review" data-placement="top" href="{{ $opras->sectionFour()->status??false?route('annual-review.index'):'#'  }}" class="list-group-item {{ $segment == 'annual-review'? 'active':'' }}  {{ $opras->sectionFour()->status??false?'':'disabled' }}">
@@ -78,8 +78,8 @@
             SECTION 6
         </a>
 
-        <a data-toggle="tooltip" title="Overall Performance" data-placement="top" href="{{ $opras->sectionSix()->status??false?/* route('form.section.7') */ '#':'#' }}" class="list-group-item {{ $segment == 'overall-performance'? 'active':'' }} {{ $opras->sectionSix()->status??false?'':'disabled' }}">
-            @if ($opras->section_7== 'complete??false')
+        <a data-toggle="tooltip" title="Overall Performance" data-placement="top" href="{{ $opras->sectionSix()->status??false?route('overall-performance.index'):'#' }}" class="list-group-item {{ $segment == 'overall-performance'? 'active':'' }} {{ $opras->sectionSix()->status??false?'':'disabled' }}">
+            @if ($opras->sectionSeven()->status??false)
                 <span class="pull-right text-info">
                     <i class="fa fa-check-square-o"></i>
                 </span>
@@ -91,7 +91,7 @@
             SECTION 7
         </a>
 
-        <a data-toggle="tooltip" title="Reward or Measure or Sanction from Supervisor" data-placement="top" href="{{ $opras->sectionSeven()->status??false?/* route('form.section.8') */ '#':'#' }}" class="list-group-item {{ $segment == 'reward-measure-sanction'? 'active':'' }} {{ $opras->sectionSeven()->status??false?'':'disabled' }}">
+        <a data-toggle="tooltip" title="Reward or Measure or Sanction from Supervisor" data-placement="top" href="{{ $opras->sectionSeven()->status??false?route('reward-measure-sanction.index'):'#' }}" class="list-group-item {{ $segment == 'reward-measure-sanction'? 'active':'' }} {{ $opras->sectionSeven()->status??false?'':'disabled' }}">
             @if ($opras->sectionEight()->status??false)
                 <span class="pull-right text-info">
                     <i class="fa fa-check-square-o"></i>
@@ -108,7 +108,7 @@
             ATTACHMENTS
         </a>
 
-        <a data-toggle="tooltip" title="Declaration and Submission" data-placement="top" href="{{ $opras->sectionEight()->status??false?route('form.submission'):'#' }}" class="list-group-item {{ $segment == 'submission'? 'active':'' }} {{ $opras->sectionEight()->status??false?'':'disabled' }}">
+        <a data-toggle="tooltip" title="Declaration and Submission" data-placement="top" href="{{ $opras->sectionEight()->status??false?route('submission'):'#' }}" class="list-group-item {{ $segment == 'submission'? 'active':'' }} {{ $opras->sectionEight()->status??false?'':'disabled' }}">
             FORM SUBMISSION
         </a>
     </div>

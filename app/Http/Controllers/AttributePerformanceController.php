@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Opras;
+use App\Events\ReviewOpras;
 use Illuminate\Http\Request;
 use App\Models\AttributePerformance;
 use Illuminate\Support\Facades\Validator;
@@ -93,6 +94,7 @@ class AttributePerformanceController extends Controller
 
     protected $mark;
     protected $relation;
+    protected $field;
 
     /**
      * Update the specified resource in storage.
@@ -103,14 +105,9 @@ class AttributePerformanceController extends Controller
      */
     public function update(Request $request)
     {
-        $opras = request()->user()->myOpras();
+        $this->authorize('attribute-good-performance-store');
 
-        if(!isset($opras->attributePerformance)) {
-            $attributePerformance =  $opras->attributePerformance()->create();
-        }
-        else {
-            $attributePerformance = $opras->attributePerformance;
-        }
+        $attributePerformance = request()->user()->myOpras()->attributePerformance;
 
         if ($attributePerformance->agreedMarkFlag()) {
             $validator = Validator::make($request->all(), $this->agreedValidation);
@@ -122,30 +119,22 @@ class AttributePerformanceController extends Controller
 
         // Validate
         if ($validator->fails()) {
-            toastr('Oops! something went wrong. Make sure all field are filled and rated mark is not greater than 5 and not less than 1', 'error');
+            toastr('All rated marks fields are required and should be not greater than 5 and not less than 1', 'error', 'Oops! something went wrong');
             $validator->validate();
         }
 
         // store rated mark for each attrubute
-        foreach ($this->fields as $key => $value) {
-            $this->relation = camel_case($value.'_mark');
+        foreach ($this->fields as $key => $field) {
+            $this->relation = camel_case($field.'_mark');
 
             if($agreed) {
-                $this->mark = $request->$value;
-                $ratedMarkId = $this->saveAgreedRatedMark($attributePerformance);
+                $this->mark = $request->$field;
+                $this->saveAgreedRatedMark($attributePerformance);
 
             } else {
-                $field = 'appraisee_'.$value;
-                $this->mark = $request->$field;
-                $ratedMarkId = $this->saveAppraiseeRatedMark($attributePerformance);
-            }
-
-            if ($ratedMarkId) {
-                if($attributePerformance) {
-                    $attributePerformance->update([
-                        $value => $ratedMarkId,
-                    ]);
-                }
+                $this->field = $field;
+                $this->mark = $request->{'appraisee_'.$field};
+                $this->saveAppraiseeRatedMark($attributePerformance);
             }
 
         }
@@ -156,7 +145,63 @@ class AttributePerformanceController extends Controller
 
     public function foward()
     {
-        return 1;
+        $this->authorize('attribute-good-performance-foward');
+
+        $opras = request()->user()->myOpras()->with('attributePerformance')->first();
+
+        $attributePerformance = $opras->attributePerformance;
+
+        if (!($attributePerformance->appraiseeMarkFlag())) {
+            toastr('Filling appraisee marks rate for all attributes is required', 'error');
+            return redirect()->route('attribute-performance.index');
+        }
+
+        if ($attributePerformance->agreedMarkFlag()) {
+            if (!$attributePerformance->allMarkFlag()) {
+                toastr('Filling agreed marks rate for all attributes is required', 'error');
+                return redirect()->route('attribute-performance.index');
+            }
+        }
+
+        $opras->reviews()->firstOrCreate([
+            'section' => 'attribute_good_performance'
+        ]);
+
+        $attributePerformance->update(['comments' => null]);
+
+        broadcast(new ReviewOpras($opras->personalInformation->supervisor_id))->toOthers();
+
+        toastr('Fowarded to supervisor successfully');
+        return back();
+    }
+
+    public function review(Opras $opras, Request $request)
+    {
+        $this->authorize('attribute-good-performance-review');
+
+        $validator = Validator::make($request->all(), $this->supervisorValidation);
+
+        // Validate
+        if ($validator->fails()) {
+            toastr('All rated marks fields are required and rated marks is not greater than 5 and not less than 1', 'error', 'Oops! something went wrong');
+            $validator->validate();
+        }
+
+        $attributePerformance = $opras->attributePerformance;
+
+        foreach ($this->fields as $key => $field) {
+            $this->relation = camel_case($field.'_mark');
+
+            $this->field = 'supervisor_'.$field;
+
+            $this->mark = $request->{$this->field};
+
+            $this->saveSupervisorRatedMark($attributePerformance);
+
+        }
+
+        toastr("Data is saved successfully", 'success');
+        return back();
     }
 
     public function saveAppraiseeRatedMark(AttributePerformance $attributePerformance)
@@ -168,16 +213,25 @@ class AttributePerformanceController extends Controller
             return $attributePerformance->{$this->relation}->id;
 
         } else {
-            return $attributePerformance->{$this->relation}()->create([
-                'appraisee' => $this->mark
-            ])->id;
+            return $attributePerformance->update([
+                $this->field => $attributePerformance->{$this->relation}()->create([
+                    'appraisee' => $this->mark
+                ])->id,
+            ]);
         }
     }
 
     public function saveAgreedRatedMark(AttributePerformance $attributePerformance)
     {
-        $attributePerformance->{$this->relation}()->update([
+        return $attributePerformance->{$this->relation}()->update([
             'agreed' => $this->mark
+        ]);
+    }
+
+    public function saveSupervisorRatedMark(AttributePerformance $attributePerformance)
+    {
+        return $attributePerformance->{$this->relation}()->update([
+            'supervisor' => $this->mark
         ]);
     }
 }

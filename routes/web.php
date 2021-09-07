@@ -8,19 +8,27 @@ use App\Http\Controllers\MidYearReviewController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OprasFormLogicController;
+use App\Http\Controllers\OverallPerformanceController;
 use App\Http\Controllers\PerformanceAgreementController;
 use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\RevisedObjectiveController;
+use App\Http\Controllers\RewardMeasureSanctionController;
 use App\Http\Livewire\Form\AnnualReview\Index as AnnualReviewIndex;
 use App\Http\Livewire\Form\AttributePerformance\Index as AttributePerformanceIndex;
 use App\Http\Livewire\Form\MidYearReview\Index as MidYearReviewIndex;
+use App\Http\Livewire\Form\OverallPerformance\Index as OverallPerformanceIndex;
 use App\Http\Livewire\Form\PerformanceAgreement\Index as PerformanceAgreementIndex;
 use App\Http\Livewire\Form\PersonalInformation\Index;
 use App\Http\Livewire\Form\RevisedObjective\Index as RevisedObjectiveIndex;
+use App\Http\Livewire\Form\RewardMeasure\Index as RewardMeasureIndex;
+use App\Http\Livewire\Form\Submission\Index as SubmissionIndex;
 use App\Http\Livewire\Review\AnnualReview;
+use App\Http\Livewire\Review\AttributePerformance;
 use App\Http\Livewire\Review\MidYearReview;
+use App\Http\Livewire\Review\OverallPerformance;
 use App\Http\Livewire\Review\PerformanceAgreement;
 use App\Http\Livewire\Review\RevisedObjective;
+use App\Http\Livewire\Review\RewardMeasure;
 use App\Http\Livewire\Review\View;
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function ()
@@ -94,19 +102,49 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function ()
         {
             Route::post('attribute-performance/foward', [AttributePerformanceController::class, 'foward'])->name('attribute-performance.foward');
             Route::resource('attribute-performance', AttributePerformanceController::class)->only([
-                'update', 'edit'
+                'update'
             ]);
         });
+
+        // Overall Performance
+        Route::get('overall-performance', OverallPerformanceIndex::class)->name('overall-performance.index');
+        Route::middleware('section:seven')->group(function ()
+        {
+            Route::post('overall-performance/foward', [OverallPerformanceController::class, 'foward'])->name('overall-performance.foward');
+            Route::resource('overall-performance', OverallPerformanceController::class)->only([
+                'update'
+            ]);
+        });
+
+        // Overall Performance
+        Route::get('reward-measure-sanction', RewardMeasureIndex::class)->name('reward-measure-sanction.index');
+
+        // Attachments
+        Route::get('attachments', RewardMeasureIndex::class)->name('attachments.index');
+        Route::get('submission', SubmissionIndex::class)->name('submission');
 
     });
 
     Route::prefix('review')->group(function ()
     {
-       Route::get('/', View::class)->name('review.index');
-       Route::get('{opras}/performance-agreement', PerformanceAgreement::class)->name('review.performance-agreement');
-       Route::get('{opras}/mid-year-review', MidYearReview::class)->name('review.mid-year-review');
-       Route::get('{opras}/revised-objective', RevisedObjective::class)->name('review.revised-objective');
-       Route::get('{opras}/annual-review', AnnualReview::class)->name('review.annual-performance-review');
+        Route::get('/', View::class)->name('review.index');
+
+        Route::get('{opras}/performance-agreement', PerformanceAgreement::class)->name('review.performance-agreement');
+
+        Route::get('{opras}/mid-year-review', MidYearReview::class)->name('review.mid-year-review');
+
+        Route::get('{opras}/revised-objective', RevisedObjective::class)->name('review.revised-objective');
+
+        Route::get('{opras}/annual-review', AnnualReview::class)->name('review.annual-performance-review');
+
+        Route::get('{opras}/attribute-performance', AttributePerformance::class)->name('review.attribute-good-performance');
+        Route::put('attribute-performance/{opras}/review', [AttributePerformanceController::class, 'review'])->name('attribute-performance.review');
+
+        Route::get('{opras}/overall-performance', OverallPerformance::class)->name('review.overall-performance');
+        Route::put('{overallPerformance}/overall-performance', [OverallPerformanceController::class, 'review'])->name('review.overall-performance');
+
+        Route::get('{opras}/reward-measure-sanction', RewardMeasure::class)->name('review.reward-measure-sanction');
+        Route::post('{opras}/reward-measure-sanction', [RewardMeasureSanctionController::class, 'store'])->name('store.reward-measure-sanction');
     });
 });
 

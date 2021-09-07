@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Review;
 use App\Models\Opras;
 use Livewire\Component;
 use App\Events\OprasReviewed;
+use Illuminate\Support\Facades\Gate;
 use App\Models\MidYearReview as ModelsMidYearReview;
 
 class MidYearReview extends Component
@@ -91,13 +92,18 @@ class MidYearReview extends Component
     public function checkSection()
     {
         if($this->opras->sectionThree()->status) {
-            toastr('Section two is already completed', 'error', 'You are not allowed');
+            toastr('Mid-Year review section is already completed', 'error', 'You are not allowed');
+            return redirect()->route('review.index');
+        } elseif (!$this->opras->reviewsectionThree()) {
+            toastr('Mid-Year review section is not under review', 'error', 'You are not allowed');
             return redirect()->route('review.index');
         }
     }
 
     public function render()
     {
+        Gate::authorize('mid-year-review-review');
+
         return view('livewire.review.mid-year-review');
     }
 }

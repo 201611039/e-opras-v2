@@ -92,9 +92,13 @@ class PerformanceAgreement extends Component
     public function checkSection()
     {
         if($this->opras->sectionTwo()->status) {
-            toastr('Section two is already completed', 'error', 'You are not allowed');
+            toastr('Performance agreement section is already completed', 'error', 'You are not allowed');
+            return redirect()->route('review.index');
+        } elseif (!$this->opras->reviewsectionTwo()) {
+            toastr('Performance agreement section is not under review', 'error', 'You are not allowed');
             return redirect()->route('review.index');
         }
+
     }
 
     public function render()

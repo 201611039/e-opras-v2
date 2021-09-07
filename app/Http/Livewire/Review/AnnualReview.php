@@ -161,6 +161,9 @@ class AnnualReview extends Component
         if($this->opras->sectionFive()->status) {
             toastr('Annual performance review section is already completed', 'error', 'You are not allowed');
             return redirect()->route('review.index');
+        } elseif (!$this->opras->reviewSectionFive()) {
+            toastr('Annual performance review section is not under review', 'error', 'You are not allowed');
+            return redirect()->route('review.index');
         }
     }
 

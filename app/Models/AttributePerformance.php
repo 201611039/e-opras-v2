@@ -131,8 +131,23 @@ class AttributePerformance extends Model
         return $this->belongsTo(RatedMark::class, 'team_work', 'id');
     }
 
-    public function agreedMarkFlag()
+    public function appraiseeMarkFlag()
+    {
+        return $this->teamWorkMark->appraisee??false;
+    }
+
+    public function supervisorMarkFlag()
     {
         return (($this->teamWorkMark->appraisee)??false) && (($this->teamWorkMark->supervisor)??false);
+    }
+
+    public function agreedMarkFlag()
+    {
+        return (($this->teamWorkMark->appraisee)??false) && (($this->teamWorkMark->supervisor)??false) && (!$this->opras->reviewSectionSix());
+    }
+
+    public function allMarkFlag()
+    {
+        return (($this->teamWorkMark->appraisee)??false) && (($this->teamWorkMark->supervisor)??false) && (($this->teamWorkMark->agreed)??false);
     }
 }

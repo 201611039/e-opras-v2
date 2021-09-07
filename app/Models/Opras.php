@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\Review\RewardMeasure;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,7 @@ class Opras extends Model
             ->doNotGenerateSlugsOnCreate()
             ->saveSlugsTo('slug');
     }
+
 
     public function getRouteKeyName()
     {
@@ -72,6 +74,16 @@ class Opras extends Model
     public function attributePerformance()
     {
         return $this->hasOne(attributePerformance::class);
+    }
+
+    public function overallPerformance()
+    {
+        return $this->hasOne(OverallPerformance::class);
+    }
+
+    public function rewardMeasure()
+    {
+        return $this->hasOne(RewardMeasureSanction::class, 'opras_id');
     }
 
     public function sectionOne()
@@ -190,11 +202,28 @@ class Opras extends Model
         ($this->sectionFive()->status) && ($this->reviewSectionFive())
         ;
     }
+
     // return true if section six status is complete or sent to supervisor
     public function checkSectionSix()
     {
         return (!$this->sectionSix()->status) && (!$this->reviewSectionSix()) ||
         ($this->sectionSix()->status) && ($this->reviewSectionSix())
+        ;
+    }
+
+    // return true if section seven status is complete or sent to supervisor
+    public function checkSectionSeven()
+    {
+        return (!$this->sectionSeven()->status) && (!$this->reviewSectionSeven()) ||
+        ($this->sectionSeven()->status) && ($this->reviewSectionSeven())
+        ;
+    }
+
+    // return true if section eight status is complete or sent to supervisor
+    public function checkSectionEight()
+    {
+        return (!$this->sectionEight()->status) && (!$this->reviewSectionEight()) ||
+        ($this->sectionEight()->status) && ($this->reviewSectionEight())
         ;
     }
 
