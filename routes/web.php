@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AnnualReviewController;
+use App\Http\Controllers\ArchiveController;
 use App\Http\Controllers\AttributePerformanceController;
+use App\Http\Controllers\ExportPDFController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MidYearReviewController;
@@ -11,6 +13,7 @@ use App\Http\Controllers\OprasFormLogicController;
 use App\Http\Controllers\OverallPerformanceController;
 use App\Http\Controllers\PerformanceAgreementController;
 use App\Http\Controllers\PersonalInformationController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RevisedObjectiveController;
 use App\Http\Controllers\RewardMeasureSanctionController;
 use App\Http\Livewire\Form\AnnualReview\Index as AnnualReviewIndex;
@@ -39,9 +42,22 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function ()
     Route::post('/{user}/change-password', [UserController::class, 'changePassword'])->name('user.change.password')->withoutMiddleware('changable-password');
     Route::delete('/user-roles/{user}', [UserController::class, 'roleRemove'])->name('user.role.remove');
     Route::post('/user-roles/{user}', [UserController::class, 'roleAdd'])->name('user.role.add');
+
+    Route::get('{user}/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile-image/store', [ProfileController::class, 'store'])->name('profile-image.store');
+    Route::put('{user}/profile', [ProfileController::class, 'update'])->name('profile.update');
+
     Route::get('users/find', [UserController::class, 'search'])->name('user.search');
     Route::resource('/users', UserController::class);
     Route::resource('/roles', RoleController::class);
+
+    // Archive
+    Route::get('archives', [ArchiveController::class, 'index'])->name('archive.index');
+    Route::get('archives/{opras}', [ArchiveController::class, 'show'])->name('archive.show');
+
+    // Report Print
+    Route::get('opras-form/{opras}', [ExportPDFController::class, 'oprasForm'])->name('opras-form.print');
+
 
     // Opras Form Routes
     Route::get('opras-form', [OprasFormLogicController::class, 'index'])->name('opras.index');
@@ -121,7 +137,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function ()
 
         // Attachments
         Route::get('attachments', RewardMeasureIndex::class)->name('attachments.index');
+
+        // Submission
         Route::get('submission', SubmissionIndex::class)->name('submission');
+        Route::post('{opras}/submission', [OprasFormLogicController::class, 'submitForm'])->name('submission.store');
 
     });
 

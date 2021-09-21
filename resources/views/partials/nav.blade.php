@@ -15,7 +15,7 @@ $navigations = [[
                 'name' => 'Form', 'icon' => 'fa fa-list-alt', 'roles' => ["personal-information-view",
                 "performance-agreement-view", "mid-year-review-view", "revised-objective-view", "annual-review-view", "attribute-good-performance-view", "overall-perfomance-view", "sanction-reward-view", "attachment-view", "opras-view"], 'segment' => 'opras-form', 'url' => route('opras.index')
             ], [
-                'name' => 'Archive', 'icon' => 'fa fa-archive', 'roles' => ["opras-archive"], 'segment' => 'archive', 'url' => route('users.index')
+                'name' => 'Archive', 'icon' => 'fa fa-archive', 'roles' => ["opras-archive"], 'segment' => 'archives', 'url' => route('archive.index')
             ]
         ]
     ]
@@ -35,7 +35,7 @@ $navigations = [[
                         <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->full_name }}</strong>
                          </span> <span class="text-muted text-xs block">{{ request()->user()->role }} <b class="caret"></b></span> </span> </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a href="{{ route('users.show', request()->user()->slug) }}"> <i class="fa fa-user"></i>  Profile</a></li>
+                        <li><a href="{{ route('profile.show', request()->user()->slug) }}"> <i class="fa fa-user"></i>  Profile</a></li>
                         <li class="divider"></li>
                         <li><a href="{{ route('user.password') }}"> <i class="fa fa-shield"></i>  Change Pasword</a></li>
                         <li class="divider"></li>

@@ -87,4 +87,9 @@ class User extends Authenticatable
 
         return $this->oprases->where('year_id', $year->id)->last();
     }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 }

@@ -30,7 +30,7 @@
                         <td><input type="number" disabled name="supervisor_team_work" class="supervisor form-control" value="{{ old('supervisor_team_work')??($attributePerformance->teamWorkMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="team_work" class="form-control" value="{{ old('team_work')??($attributePerformance->teamWorkMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="team_work" class="form-control" value="{{ old('team_work')??($attributePerformance->teamWorkMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -41,7 +41,7 @@
                         <td><input type="number" disabled name="supervisor_interaction" class="supervisor form-control" value="{{ old('supervisor_interaction')??($attributePerformance->interactionMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="interaction" class="form-control" value="{{ old('interaction')??($attributePerformance->interactionMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="interaction" class="form-control" value="{{ old('interaction')??($attributePerformance->interactionMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -52,7 +52,7 @@
                         <td><input type="number" disabled name="supervisor_respect" class="supervisor form-control" value="{{ old('supervisor_respect')??($attributePerformance->respectMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="respect" class="form-control" value="{{ old('respect')??($attributePerformance->respectMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="respect" class="form-control" value="{{ old('respect')??($attributePerformance->respectMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 
@@ -66,7 +66,7 @@
                         <td><input type="number" disabled name="supervisor_writting" class="supervisor form-control" value="{{ old('supervisor_writting')??($attributePerformance->writtingMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="writting" class="form-control" value="{{ old('writting')??($attributePerformance->writtingMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="writting" class="form-control" value="{{ old('writting')??($attributePerformance->writtingMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -77,7 +77,7 @@
                         <td><input type="number" disabled name="supervisor_speak" class="supervisor form-control" value="{{ old('supervisor_speak')??($attributePerformance->speakMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="speak" class="form-control" value="{{ old('speak')??($attributePerformance->speakMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="speak" class="form-control" value="{{ old('speak')??($attributePerformance->speakMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 </tr>
@@ -89,7 +89,7 @@
                         <td><input type="number" disabled name="supervisor_listen" class="supervisor form-control" value="{{ old('supervisor_listen')??($attributePerformance->listenMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="listen" class="form-control" value="{{ old('listen')??($attributePerformance->listenMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="listen" class="form-control" value="{{ old('listen')??($attributePerformance->listenMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -100,7 +100,7 @@
                         <td><input type="number" disabled name="supervisor_train" class="supervisor form-control" value="{{ old('supervisor_train')??($attributePerformance->trainMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="train" class="form-control" value="{{ old('train')??($attributePerformance->trainMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="train" class="form-control" value="{{ old('train')??($attributePerformance->trainMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 
@@ -114,7 +114,7 @@
                         <td><input type="number" disabled name="supervisor_plan_organize" class="supervisor form-control" value="{{ old('supervisor_plan_organize')??($attributePerformance->planOrganizeMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="plan_organize" class="form-control" value="{{ old('plan_organize')??($attributePerformance->planOrganizeMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="plan_organize" class="form-control" value="{{ old('plan_organize')??($attributePerformance->planOrganizeMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -125,7 +125,7 @@
                         <td><input type="number" disabled name="supervisor_lead" class="supervisor form-control" value="{{ old('supervisor_lead')??($attributePerformance->leadMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="lead" class="form-control" value="{{ old('lead')??($attributePerformance->leadMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="lead" class="form-control" value="{{ old('lead')??($attributePerformance->leadMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -136,7 +136,7 @@
                         <td><input type="number" disabled name="supervisor_innitiate_innovate" class="supervisor form-control" value="{{ old('supervisor_innitiate_innovate')??($attributePerformance->innitiateInnovateMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="innitiate_innovate" class="form-control" value="{{ old('innitiate_innovate')??($attributePerformance->innitiateInnovateMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="innitiate_innovate" class="form-control" value="{{ old('innitiate_innovate')??($attributePerformance->innitiateInnovateMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 
@@ -150,7 +150,7 @@
                         <td><input type="number" disabled name="supervisor_output" class="supervisor form-control" value="{{ old('supervisor_output')??($attributePerformance->outputMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="output" class="form-control" value="{{ old('output')??($attributePerformance->outputMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="output" class="form-control" value="{{ old('output')??($attributePerformance->outputMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -161,7 +161,7 @@
                         <td><input type="number" disabled name="supervisor_persistence" class="supervisor form-control" value="{{ old('supervisor_persistence')??($attributePerformance->persistenceMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="persistence" class="form-control" value="{{ old('persistence')??($attributePerformance->persistenceMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="persistence" class="form-control" value="{{ old('persistence')??($attributePerformance->persistenceMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 
@@ -175,7 +175,7 @@
                         <td><input type="number" disabled name="supervisor_demand" class="supervisor form-control" value="{{ old('supervisor_demand')??($attributePerformance->demandMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="demand" class="form-control" value="{{ old('demand')??($attributePerformance->demandMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="demand" class="form-control" value="{{ old('demand')??($attributePerformance->demandMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -186,7 +186,7 @@
                         <td><input type="number" disabled name="supervisor_extra_work" class="supervisor form-control" value="{{ old('supervisor_extra_work')??($attributePerformance->extraWorkMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="extra_work" class="form-control" value="{{ old('extra_work')??($attributePerformance->extraWorkMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="extra_work" class="form-control" value="{{ old('extra_work')??($attributePerformance->extraWorkMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 
@@ -200,7 +200,7 @@
                         <td><input type="number" disabled name="supervisor_responsibility" class="supervisor form-control" value="{{ old('supervisor_responsibility')??($attributePerformance->responsibilityMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="responsibility" class="form-control" value="{{ old('responsibility')??($attributePerformance->responsibilityMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="responsibility" class="form-control" value="{{ old('responsibility')??($attributePerformance->responsibilityMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -211,7 +211,7 @@
                         <td><input type="number" disabled name="supervisor_decisions" class="supervisor form-control" value="{{ old('supervisor_decisions')??($attributePerformance->decisionsMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="decisions" class="form-control" value="{{ old('decisions')??($attributePerformance->decisionsMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="decisions" class="form-control" value="{{ old('decisions')??($attributePerformance->decisionsMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 
@@ -225,7 +225,7 @@
                         <td><input type="number" disabled name="supervisor_customer" class="supervisor form-control" value="{{ old('supervisor_customer')??($attributePerformance->customerMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="customer" class="form-control" value="{{ old('customer')??($attributePerformance->customerMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="customer" class="form-control" value="{{ old('customer')??($attributePerformance->customerMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 
@@ -239,7 +239,7 @@
                         <td><input type="number" disabled name="supervisor_followership" class="supervisor form-control" value="{{ old('supervisor_followership')??($attributePerformance->followershipMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="followership" class="form-control" value="{{ old('followership')??($attributePerformance->followershipMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="followership" class="form-control" value="{{ old('followership')??($attributePerformance->followershipMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -250,7 +250,7 @@
                         <td><input type="number" disabled name="supervisor_support" class="supervisor form-control" value="{{ old('supervisor_support')??($attributePerformance->supportMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="support" class="form-control" value="{{ old('support')??($attributePerformance->supportMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="support" class="form-control" value="{{ old('support')??($attributePerformance->supportMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -261,7 +261,7 @@
                         <td><input type="number" disabled name="supervisor_instructions" class="supervisor form-control" value="{{ old('supervisor_instructions')??($attributePerformance->instructionsMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="instructions" class="form-control" value="{{ old('instructions')??($attributePerformance->instructionsMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="instructions" class="form-control" value="{{ old('instructions')??($attributePerformance->instructionsMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 
@@ -275,7 +275,7 @@
                         <td><input type="number" disabled name="supervisor_working" class="supervisor form-control" value="{{ old('supervisor_working')??($attributePerformance->workingMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="working" class="form-control" value="{{ old('working')??($attributePerformance->workingMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="working" class="form-control" value="{{ old('working')??($attributePerformance->workingMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -286,7 +286,7 @@
                         <td><input type="number" disabled name="supervisor_services" class="supervisor form-control" value="{{ old('supervisor_services')??($attributePerformance->servicesMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="services" class="form-control" value="{{ old('services')??($attributePerformance->servicesMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="services" class="form-control" value="{{ old('services')??($attributePerformance->servicesMark->agreed??'') }}"></td>
                     @endif
                 </tr>
                 <tr>
@@ -297,7 +297,7 @@
                         <td><input type="number" disabled name="supervisor_government" class="supervisor form-control" value="{{ old('supervisor_government')??($attributePerformance->governmentMark->supervisor??'') }}"></td>
                     @endif
                     @if(isset($attributePerformance->teamWorkMark->agreed) || $appraisee)
-                        <td><input {{-- @if($supervisorInputDisabled) disabled @endif --}} type="number" name="government" class="form-control" value="{{ old('government')??($attributePerformance->governmentMark->agreed??'') }}"></td>
+                        <td><input disabled  type="number" name="government" class="form-control" value="{{ old('government')??($attributePerformance->governmentMark->agreed??'') }}"></td>
                     @endif
                 </tr>
 

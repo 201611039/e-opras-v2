@@ -29,7 +29,8 @@ class RoleSeeder extends Seeder
                     ['overall-perfomance', 'action' => ['view']],
                     ['sanction-reward', 'action' => ['view']],
                     ['attachment', 'action' => ['view']],
-                    ['opras', 'action' => ['view', 'archive']],
+                    ['opras', 'action' => ['view', 'archive', 'submit']],
+                    ['archive', 'action' => ['view', 'show']],
                 ]
             ], [
                 'name' => 'supervisee', 'permissions' => [

@@ -39,7 +39,7 @@ class OverallPerformance extends Component
         broadcast(new OprasReviewed($this->opras))->toOthers();
 
         toastr('Completed successfully');
-        return redirect()->route('review.reward-measure-sanction');
+        return redirect()->route('review.reward-measure-sanction', $this->opras->id);
     }
 
     public function checkSection()

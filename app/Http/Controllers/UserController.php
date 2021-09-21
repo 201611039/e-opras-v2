@@ -73,7 +73,8 @@ class UserController extends Controller
         ]);
 
         $user->assignRole($request->role);
-
+        $user->profile()->create();
+        
         toastr('User created successfully');
         return redirect()->route('users.index');
     }

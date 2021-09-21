@@ -23,7 +23,7 @@
 
                             <div class="form-group">
                                 <label>Appraisee Comments  <small>(if any)</small></label>
-                                @if ($opras->sectionSeven())
+                                @if ($opras->sectionSeven()->status)
                                     <div class="well">
                                         {!! ($overallPerformance->supervisor_comments??'No comments') !!}
                                     </div>
@@ -39,7 +39,7 @@
                                 @enderror
                             </div>
 
-                            @if ($opras->sectionSeven())
+                            @if ($opras->sectionSeven()->status)
                                 <div class="form-group">
                                     <label>Supervisor Comments  <small></small></label>
                                     <div class="well">

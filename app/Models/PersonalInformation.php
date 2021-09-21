@@ -24,6 +24,11 @@ class PersonalInformation extends Model
         return $this->belongsTo(Opras::class);
     }
 
+    public function supervisor()
+    {
+      return $this->belongsTo(User::class, 'supervisor_id');
+    }
+
     public function post()
     {
         return $this->belongsTo(Post::class);

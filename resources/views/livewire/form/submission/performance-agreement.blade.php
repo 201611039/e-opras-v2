@@ -24,17 +24,6 @@
 
                     <td class="text-left">
                         <a href="#" class="" data-toggle="modal" data-target="#performance-{{$key}}" title="Show"><i class="fa fa-eye"></i></a>
-                        @if ($opras->checkSectionTwo())
-                            <a style="margin-left: 5px;" href="{{ route('performance-agreement.edit', $performance->getRouteKey()) }}" class="" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
-                            <a style="margin-left: 5px;" href="javascript:void(0)" onclick="deleteData({{ $performance }})" class=" text-danger" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></a>
-                            <form hidden method="post" action="{{ route('performance-agreement.destroy', $performance->getRouteKey()) }}" id="form{{ $performance->id }}">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                            @if ($performance->comments)
-                                <i style="margin-left: 15px;" class="text-danger fa fa-exclamation"></i>
-                            @endif
-                        @endif
                     </td>
 
                     <!-- Modal -->

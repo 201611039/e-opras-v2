@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Http\Livewire\Review\RewardMeasure;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Livewire\Review\RewardMeasure;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Opras extends Model
@@ -22,6 +23,7 @@ class Opras extends Model
     {
         return SlugOptions::create()
             ->doNotGenerateSlugsOnCreate()
+            ->doNotGenerateSlugsOnUpdate()
             ->saveSlugsTo('slug');
     }
 
@@ -29,6 +31,11 @@ class Opras extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function year()
+    {
+        return $this->belongsTo(Year::class);
     }
 
     public function user()
@@ -84,6 +91,11 @@ class Opras extends Model
     public function rewardMeasure()
     {
         return $this->hasOne(RewardMeasureSanction::class, 'opras_id');
+    }
+
+    // Get previous model
+    public  function previous(){
+        return Opras::where([['id', '<', $this->id], ['user_id', Auth::id()]])->orderBy('id','desc')->first();
     }
 
     public function sectionOne()
@@ -174,57 +186,99 @@ class Opras extends Model
     // return true if section two status is complete or sent to supervisor
     public function checkSectionTwo()
     {
-        return (!$this->sectionTwo()->status) && (!$this->reviewSectionTwo()) ||
-        ($this->sectionTwo()->status) && ($this->reviewSectionTwo())
-        ;
+        if ($this->sectionTwo()) {
+            return !($this->sectionTwo()->status) && !($this->reviewSectionTwo());
+        } else {
+            return false;
+        }
+
+        // return (!($this->sectionTwo()?($this->sectionTwo()->status):true)) && (!$this->reviewSectionTwo()) ||
+        // (($this->sectionTwo()?($this->sectionTwo()->status):false)) && ($this->reviewSectionTwo())
+        // ;
     }
 
     // return true if section two status is complete or sent to supervisor
     public function checkSectionThree()
     {
-        return (!$this->sectionThree()->status) && (!$this->reviewSectionThree()) ||
-        ($this->sectionThree()->status) && ($this->reviewSectionThree())
-        ;
+        if ($this->sectionThree()) {
+            return !($this->sectionThree()->status) && !($this->reviewSectionThree());
+        } else {
+            return false;
+        }
+
+        // return (!($this->sectionThree()?($this->sectionThree()->status):true)) && (!$this->reviewSectionThree()) ||
+        // (($this->sectionThree()?($this->sectionThree()->status):false)) && ($this->reviewSectionThree())
+        // ;
     }
 
     // return true if section four status is complete or sent to supervisor
     public function checkSectionFour()
     {
-        return (!$this->sectionFour()->status) && (!$this->reviewSectionFour()) ||
-        ($this->sectionFour()->status) && ($this->reviewSectionFour())
-        ;
+        if ($this->sectionFour()) {
+            return !($this->sectionFour()->status) && !($this->reviewSectionFour());
+        } else {
+            return false;
+        }
+
+        // return (!($this->sectionFour()?($this->sectionFour()->status):true)) && (!$this->reviewSectionFour()) ||
+        // (($this->sectionFour()?($this->sectionFour()->status):false)) && ($this->reviewSectionFour())
+        // ;
     }
 
     // return true if section five status is complete or sent to supervisor
     public function checkSectionFive()
     {
-        return (!$this->sectionFive()->status) && (!$this->reviewSectionFive()) ||
-        ($this->sectionFive()->status) && ($this->reviewSectionFive())
-        ;
+        if ($this->sectionFive()) {
+            return !($this->sectionFive()->status) && !($this->reviewSectionFive());
+        } else {
+            return false;
+        }
+
+        // return (!($this->sectionFive()?($this->sectionFive()->status):true)) && (!$this->reviewSectionFive()) ||
+        // (($this->sectionFive()?($this->sectionFive()->status):false)) && ($this->reviewSectionFive())
+        // ;
     }
 
     // return true if section six status is complete or sent to supervisor
     public function checkSectionSix()
     {
-        return (!$this->sectionSix()->status) && (!$this->reviewSectionSix()) ||
-        ($this->sectionSix()->status) && ($this->reviewSectionSix())
-        ;
+        if ($this->sectionSix()) {
+            return !($this->sectionSix()->status) && !($this->reviewSectionSix());
+        } else {
+            return false;
+        }
+
+        // return (!($this->sectionSix()?($this->sectionSix()->status):true)) && (!$this->reviewSectionSix()) ||
+        // (($this->sectionSix()?($this->sectionSix()->status):false)) && ($this->reviewSectionSix())
+        // ;
     }
 
     // return true if section seven status is complete or sent to supervisor
     public function checkSectionSeven()
     {
-        return (!$this->sectionSeven()->status) && (!$this->reviewSectionSeven()) ||
-        ($this->sectionSeven()->status) && ($this->reviewSectionSeven())
-        ;
+        if ($this->sectionSeven()) {
+            return !($this->sectionSeven()->status) && !($this->reviewSectionSeven());
+        } else {
+            return false;
+        }
+
+        // return (!($this->sectionSeven()?($this->sectionSeven()->status):true)) && (!$this->reviewSectionSeven()) ||
+        // (($this->sectionSeven()?($this->sectionSeven()->status):false)) && ($this->reviewSectionSeven())
+        // ;
     }
 
     // return true if section eight status is complete or sent to supervisor
     public function checkSectionEight()
     {
-        return (!$this->sectionEight()->status) && (!$this->reviewSectionEight()) ||
-        ($this->sectionEight()->status) && ($this->reviewSectionEight())
-        ;
+        if ($this->sectionEight()) {
+            return !($this->sectionEight()->status) && !($this->reviewSectionEight());
+        } else {
+            return false;
+        }
+
+        // return (!($this->sectionEight()?($this->sectionEight()->status):true)) && (!$this->reviewSectionEight()) ||
+        // (($this->sectionEight()?($this->sectionEight()->status):false)) && ($this->reviewSectionEight())
+        // ;
     }
 
 }

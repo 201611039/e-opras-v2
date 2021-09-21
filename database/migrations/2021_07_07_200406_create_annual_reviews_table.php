@@ -26,7 +26,7 @@ class CreateAnnualReviewsTable extends Migration
 
             $table->longText('objective');
             $table->longText('progress_made')->nullable();
-            $table->text('comment')->nullable();
+            $table->text('comments')->nullable();
 
             $table->unsignedBigInteger('rated_mark_id')->nullable();
             $table->foreign('rated_mark_id')->references('id')->on('rated_marks')->onDelete('cascade');

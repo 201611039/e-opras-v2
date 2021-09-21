@@ -14,7 +14,7 @@
                         @if($opras->attributePerformance->comments)
                         <div class="alert alert-danger" role="alert">
                             <h4>Declined by supervisor because of:</h4>
-                            {!! $opras->attributePerformance->comments !!}
+                            {!! $opras->attributePerformance->comments??false !!}
                         </div>
                         @endif
                         <form id="form" action="{{ route('attribute-performance.update', $opras->slug) }}" method="post">
